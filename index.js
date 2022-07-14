@@ -7,8 +7,11 @@ app.use(express.static("public"))
 const bodyParser=require("body-parser");
 const userRouter=require('./routes/user.route')
 //const signupRouter=require('./routes/signup.route')
+const cors=require('cors')
 const mongoose=require("mongoose")
-const URI="mongodb+srv://AboladeTikristi:tikristi@cluster0.8i7iv.mongodb.net/love_calculator?retryWrites=true&w=majority"
+app.use(cors())
+require('dotenv').config()
+const URI=process.env.MONGO_URI;
 app.use(bodyParser.urlencoded({extended:true}))
 mongoose.connect(URI,(err)=>{
       if (err) {
